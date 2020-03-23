@@ -1,5 +1,5 @@
 <<<<<<< HEAD
-# SimpleModBot
+# Simple-Discord_Bot
 
 **Setup**:
 
@@ -11,5 +11,5 @@
 
 4. Run the bot (you can do this by typing 'python SimpleModBot.py' in command prompt). It will provide a link in the console to invite the bot to your server.
 =======
-# Simple-Discord-Bot
->>>>>>> ab08b9a5edd670efc8974eb27e279912e5e18f85
+
+>>>>>>> 
