@@ -24,11 +24,11 @@ client = discord.Client(description=desc)
 
 @client.event
 async def on_message(message: discord.Message):
-    Channel = message.channel
+    channel = message.channel
     if message.author.bot:
         return
     if any([word in message.content for word in config['words']]):
-        await Channel.send('{}: {}'.format(message.author.mention, config['response']))
+        await channel.send('{}: {}'.format(message.author.mention, config['response']))
 
 
 @client.event
