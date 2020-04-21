@@ -43,9 +43,27 @@ async def on_ready():
     url = discord.utils.oauth_url(app_info.id, perms)
     print('To invite me to a server, use this link\n{}'.format(url))
 
-    # uncomment to set a playing status for the bot:
-    #activity = discord.Game(name="game")
-    # await client.change_presence(status=discord.Status.idle, activity=activity)
+    #Uncomment code below to set whatever custom status you would like
+    #Note: After some testing, I noticed that it takes several moments to switch statuses if you're switching from the "streaming" status to any other status, probably because of url/link
+
+    #GAMEactivity <- Do not uncomment
+    #game = discord.Game(name="Game")
+    #await client.change_presence(activity=game, status=discord.Status.idle)
+
+
+    #STREAMactivity <- Do not uncomment
+    #stream = discord.Streaming(name="Twitch", url="https://www.twitch.tv/dankmemerdiscord") 
+    #await client.change_presence(activity=stream, status=discord.Status.idle)
+
+
+    #WATCHactivity <- Do not uncomment
+    #watch = discord.Activity(type=discord.ActivityType.watching, name="video")
+    #await client.change_presence(activity=watch, status=discord.Status.idle)
+
+
+    #LISTENINGactivity <- Do not uncomment
+    #listen = discord.Activity(type=discord.ActivityType.listening, name="music")
+    #await client.change_presence(activity=listen, status=discord.Status.idle)
 
 if __name__ == '__main__':
     try:
