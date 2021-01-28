@@ -9,6 +9,6 @@
 
 3. Put the bot's response, and the words it should respond to in config.json
 
-4. Run the bot (you can do this by typing 'python3 SimpleModBot.py' in command prompt). It will provide a link in the console to invite the bot to your server. 
+4. Run the bot (you can do this by typing 'python3 SimpleModBot.py' or 'py SimpleModBot.py' in command prompt). It will provide a link in the console to invite the bot to your server. 
 
 5. Visit the discord py. [api](https://discordpy.readthedocs.io/en/latest/api.html) documentation to learn more about programming a bot. 
