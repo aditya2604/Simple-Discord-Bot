@@ -1,4 +1,5 @@
 import json
+from discord.ext import commands
 try:
     import discord
 except ImportError:
@@ -19,10 +20,9 @@ except FileNotFoundError:
 desc = """
 Simple moderation bot.
 """
-client = discord.Client(description=desc)
+bot = commands.Bot(command_prefix='prefix here', description=desc)
 
-
-@client.event
+@bot.event
 async def on_message(message: discord.Message):
     channel = message.channel
     if message.author.bot:
@@ -31,43 +31,33 @@ async def on_message(message: discord.Message):
         await channel.send('{}: {}'.format(message.author.mention, config['response']))
 
 
-@client.event
+@bot.event
 async def on_ready():
-    app_info = await client.application_info()
-    client.owner = app_info.owner
-    print('Bot: {0.name}:{0.id}'.format(client.user))
-    print('Owner: {0.name}:{0.id}'.format(client.owner))
+    app_info = await bot.application_info()
+    bot.owner = app_info.owner
+    print('Bot: {0.name}:{0.id}'.format(bot.user))
+    print('Owner: {0.name}:{0.id}'.format(bot.owner))
     print('------------------')
     perms = discord.Permissions.none()
     perms.administrator = True
     url = discord.utils.oauth_url(app_info.id, perms)
     print('To invite me to a server, use this link\n{}'.format(url))
 
-    #Uncomment code below to set whatever custom status you would like
-    #Note: After some testing, I noticed that it takes several moments to switch statuses if you're switching from the "streaming" status to any other status, probably because of url/link
+    # Setting `Playing ` status
+    # await bot.change_presence(activity=discord.Game(name="a game"), status=discord.Status.online)
 
-    #GAMEactivity <- Do not uncomment
-    #game = discord.Game(name="Game")
-    #await client.change_presence(activity=game, status=discord.Status.idle)
+    # Setting `Streaming ` status
+    # await bot.change_presence(activity=discord.Streaming(name="a stream", url="https://www.twitch.tv/dankmemerdiscord"))
 
+    # Setting `Listening ` status
+    # await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.listening, name="a song"), status=discord.Status.online)
 
-    #STREAMactivity <- Do not uncomment
-    #stream = discord.Streaming(name="Twitch", url="https://www.twitch.tv/dankmemerdiscord") 
-    #await client.change_presence(activity=stream, status=discord.Status.idle)
-
-
-    #WATCHactivity <- Do not uncomment
-    #watch = discord.Activity(type=discord.ActivityType.watching, name="video")
-    #await client.change_presence(activity=watch, status=discord.Status.idle)
-
-
-    #LISTENINGactivity <- Do not uncomment
-    #listen = discord.Activity(type=discord.ActivityType.listening, name="music")
-    #await client.change_presence(activity=listen, status=discord.Status.idle)
+    # Setting `Watching ` status
+    # await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name="a movie"), status=discord.Status.online)
 
 if __name__ == '__main__':
     try:
-        client.run(config['discord_token'])
+        bot.run(config['discord_token'])
     except KeyError:
         print("config not yet filled out.")
     except discord.errors.LoginFailure as e:
